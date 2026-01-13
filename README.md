@@ -24,3 +24,6 @@ Laravel開発環境構築
 ・mysql  Ver 8.0.26
 
 ・nginx/1.21.1
+
+## ER図
+![ER図](docs/flea-market_application.png)
