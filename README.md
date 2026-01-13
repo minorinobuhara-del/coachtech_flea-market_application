@@ -16,6 +16,10 @@ Laravel開発環境構築
 
 ・cp .env.example .env（環境変数を変更）
 
+## 開発環境
+
+・phpMyAdmin:http://localhost:8080/
+
 ## 使用技術
 ・PHP 8.1.34
 
