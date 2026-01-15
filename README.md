@@ -18,6 +18,8 @@ Laravel 開発環境構築
 
 ・cp .env.example .env（環境変数を変更）
 
+・composer show laravel/fortify
+
 ## 開発環境
 
 ・phpMyAdmin:http://localhost:8080/
