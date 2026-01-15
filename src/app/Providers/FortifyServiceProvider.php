@@ -24,6 +24,17 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // 会員登録画面
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+        // ログイン画面（必須）
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+
+        // ユーザー作成処理
         Fortify::createUsersUsing(CreateNewUser::class);
     }
 }

@@ -53,3 +53,4 @@
         <a href="{{ route('login') }}">ログインはこちら</a>
     </div>
 </div>
+</body>
