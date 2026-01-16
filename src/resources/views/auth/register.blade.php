@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 <body>
+    <div class="auth-header">
+        <img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH">
+    </div>
 
-
-<div class="auth-header"></div>
-
-<div class="auth-container">
-    <h1 class="auth-title">会員登録</h1>
+    <div class="auth-container">
+        <h1 class="auth-title">会員登録</h1>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -21,7 +21,7 @@
             <label>ユーザー名</label>
             <input type="text" name="name" value="{{ old('name') }}">
             @error('name')
-                <div class="error-message">{{ $message }}</div>
+                <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
@@ -29,7 +29,7 @@
             <label>メールアドレス</label>
             <input type="email" name="email" value="{{ old('email') }}">
             @error('email')
-                <div class="error-message">{{ $message }}</div>
+                <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
@@ -37,20 +37,25 @@
             <label>パスワード</label>
             <input type="password" name="password">
             @error('password')
-                <div class="error-message">{{ $message }}</div>
+                <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-group">
             <label>確認用パスワード</label>
             <input type="password" name="password_confirmation">
+            @error('password_confirmation')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </div>
 
-        <button class="btn-register">登録する</button>
+        <button type="submit" class="btn-register">登録する</button>
     </form>
 
     <div class="auth-link">
-        <a href="{{ route('login') }}">ログインはこちら</a>
+        <a href="{{ route('login') }}" >ログインはこちら</a>
     </div>
 </div>
+
 </body>
+</html>

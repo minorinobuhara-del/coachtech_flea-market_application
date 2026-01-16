@@ -20,9 +20,26 @@ Laravel 開発環境構築
 
 ・composer show laravel/fortify
 
+・php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+
+・php artisan make:request RegisterRequest
+
 ## 開発環境
 
 ・phpMyAdmin:http://localhost:8080/
+
+## メール認証について
+
+本アプリケーションでは、Laravel Fortify のメール認証機能を確認中です。
+メール認証が完了していないユーザーはログインできないように確認中です。
+
+## メール送信環境
+
+ローカル開発環境では MailHog を使用しています。
+
+- メール確認URL：http://localhost:8025→非表示している状態なので、確認中。
+
+- メール内容は実送信されません
 
 ## 使用技術
 
@@ -35,4 +52,5 @@ Laravel 開発環境構築
 ・nginx/1.21.1
 
 ## ER 図
+
 ![ER図](docs/flea-market_application.png)
