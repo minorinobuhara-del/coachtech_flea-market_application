@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,6 +28,12 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        throw ValidationException::withMessages([
+            'auth' => 'ログイン情報が登録されていません',
+        ]);
+    }
     /**
      * Register the exception handling callbacks for the application.
      *
