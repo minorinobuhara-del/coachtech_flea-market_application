@@ -18,13 +18,23 @@ use App\Http\Controllers\ProfileController;
     //return view('welcome');
 //});
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/mypage', function () {
-        return view('mypage');
-    });
-    Route::get('/profile', fn () => view('profile'));
 
-    Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    });
+    Route::get('/mypage', fn () => view('mypage'));
+
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::post('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+});
+
+Route::middleware(['auth', 'verified'])->get('/redirect', function () {
+    if (
+        empty(auth()->user()->postcode) ||
+        empty(auth()->user()->address)
+    ) {
+        return redirect()->route('profile.edit');
+    }
+
+    return redirect('/mypage');
 });
