@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\ProfileController;
 //Route::get('/', function () {
     //return view('welcome');
 //});
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/mypage', fn () => view('mypage'));
