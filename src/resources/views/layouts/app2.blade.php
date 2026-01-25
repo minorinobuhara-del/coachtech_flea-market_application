@@ -18,7 +18,7 @@
     <div class="header-right">
         <a href="/login">ログイン</a>
         <a href="#">マイページ</a>
-        <a class="sell-btn" href="#">出品</a>
+        <a class="sell-btn" href="#"><font color="#000000">出品</font></a>
     </div>
 </header>
 

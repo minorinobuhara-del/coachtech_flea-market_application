@@ -24,6 +24,10 @@ Laravel 開発環境構築
 
 ・php artisan make:request RegisterRequest
 
+・php artisan db:seed
+
+・php artisan migrate:fresh --seed
+
 ## 開発環境
 
 ・phpMyAdmin:http://localhost:8080/
