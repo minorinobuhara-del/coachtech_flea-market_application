@@ -39,6 +39,11 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        // メール認証案内画面
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
         // ユーザー作成処理
         Fortify::createUsersUsing(CreateNewUser::class);
 
@@ -62,7 +67,7 @@ class FortifyServiceProvider extends ServiceProvider
             return new class implements LoginResponse {
                 public function toResponse($request)
                 {
-                    $user = auth()->user();
+                    $user = $request->user();
 
                     // 初回ログインならプロフィール設定へ
                     if (!$user->profile_completed) {
@@ -70,7 +75,7 @@ class FortifyServiceProvider extends ServiceProvider
                     }
 
                     // 2回目以降
-                    return redirect('/mypage');
+                    return redirect('/?tab=mylist');
                 }
             };
         });

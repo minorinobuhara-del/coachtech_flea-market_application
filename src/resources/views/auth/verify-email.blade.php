@@ -17,7 +17,7 @@
             メール認証を完了してください。
         </p>
 
-        <a href="#" class="verify-button" onclick="document.getElementById('verify-form').submit();">
+        <a href="/profile" class="verify-button" onclick="document.getElementById('verify-form').submit();">
             認証はこちらから
         </a>
 

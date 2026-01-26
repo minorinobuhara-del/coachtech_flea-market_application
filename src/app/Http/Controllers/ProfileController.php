@@ -14,13 +14,16 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => ['required|string|max:20'],
-            'postcode' => ['required|string'],
-            'address' => ['required|string'],
+            'name' => 'required|string|max:20',
+            'postcode' => 'required|string',
+            'address' => 'required|string',
+            'building' => 'nullable|string',
+            'image' => 'nullable|image',
         ]);
 
         $user = auth()->user();
 
+        // プロフィール更新
         $user->update([
             'name' => $request->name,
             'postcode' => $request->postcode,
@@ -29,6 +32,6 @@ class ProfileController extends Controller
             'profile_completed' => true,
         ]);
 
-        return redirect('/mypage');
+        return redirect('/?tab=mylist');
     }
 }

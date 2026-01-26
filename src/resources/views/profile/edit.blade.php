@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @section('content')
 <body>
-    <div class="auth-header">
-        <img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH">
-    </div>
 <div class="profile-container">
     <h2 class="profile-title">プロフィール設定</h2>
 

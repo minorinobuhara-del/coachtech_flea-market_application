@@ -16,8 +16,21 @@
     </form>
 
     <div class="header-right">
-        <a href="/login">ログイン</a>
-        <a href="#">マイページ</a>
+
+        {{-- 未ログイン --}}
+        @guest
+            <a href="/login">ログイン</a>
+        @endguest
+
+        {{-- ログイン中 --}}
+        @auth
+            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+
+        @endauth
+        <a href="/mypage">マイページ</a>
         <a class="sell-btn" href="#"><font color="#000000">出品</font></a>
     </div>
 </header>

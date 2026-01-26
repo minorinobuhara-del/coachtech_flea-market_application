@@ -30,7 +30,6 @@ body {
 
 .search-form {
     flex: 1;
-    /* ★中央を広げる */
     display: flex;
     justify-content: center;
 }
@@ -219,4 +218,21 @@ body {
     padding: 12px;
     width: 100%;
     cursor: pointer;
+}
+
+/*ログアウトボタン*/
+.logout-btn {
+    background-color: #000;
+    /* 黒背景 */
+    color: #fff;
+    /* 白文字 */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    opacity: 0.8;
 }
