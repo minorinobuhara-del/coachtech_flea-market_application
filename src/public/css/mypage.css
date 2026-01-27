@@ -1,0 +1,75 @@
+.mypage-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ddd;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.edit-profile-btn {
+    border: 1px solid red;
+    color: red;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.mypage-tabs {
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 30px;
+}
+
+.mypage-tabs a {
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+.mypage-tabs a.active {
+    color: red;
+    border-bottom: 2px solid red;
+}
+
+.item-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #ddd;
+    object-fit: cover;
+}
+
+.item-card p {
+    margin-top: 8px;
+    font-size: 14px;
+}

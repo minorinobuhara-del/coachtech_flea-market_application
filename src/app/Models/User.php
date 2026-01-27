@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Item;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -46,4 +47,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'profile_completed' => 'boolean',
     ];
+
+    // ユーザーが出品した商品
+    public function sellingItems()
+    {
+        return $this->hasMany(Item::class);//seller_id
+    }
+
+    //ユーザーが購入した商品
+    //※ 購入履歴テーブルができてから実装
+    public function purchasedItems()
+    {
+        //return $this->hasMany(Item::class, 'user_id');//buyer_id
+        return collect();
+    }
 }

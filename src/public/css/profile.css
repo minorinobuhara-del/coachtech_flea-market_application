@@ -61,3 +61,6 @@
     border: none;
     margin-top: 20px;
 }
+.file-input {
+    display: none;
+}
