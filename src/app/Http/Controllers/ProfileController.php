@@ -21,7 +21,7 @@ class ProfileController extends Controller
             'user' => auth()->user()
         ]);
     }
-    
+
     // プロフィール更新処理
     public function update(Request $request)
     {

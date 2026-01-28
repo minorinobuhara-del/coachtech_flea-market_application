@@ -6,6 +6,15 @@
 <body>
 <div class="profile-container">
     <h2 class="profile-title">プロフィール設定</h2>
+    @if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf

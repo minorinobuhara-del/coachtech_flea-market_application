@@ -15,5 +15,7 @@ return [
         'name' => 'ユーザー名',
         'postcode' => '郵便番号',
         'address' => '住所',
+        'email' => 'メール',
+        'password' => 'パスワード',
     ],
 ];

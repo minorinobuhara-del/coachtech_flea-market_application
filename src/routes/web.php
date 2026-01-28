@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,17 @@ use App\Http\Controllers\ItemController;
 //Route::get('/', function () {
     //return view('welcome');
 //});
+
+//ログイン処理
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+//商品一覧ページ
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
+
+//商品検索機能
+Route::get('/search', [ItemController::class, 'search'])->name('items.search');
+
+//商品詳細ページ
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 

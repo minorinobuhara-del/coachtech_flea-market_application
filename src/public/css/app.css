@@ -221,18 +221,22 @@ body {
 }
 
 /*ログアウトボタン*/
-.logout-btn {
-    background-color: #000;
-    /* 黒背景 */
-    color: #fff;
-    /* 白文字 */
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-right a {
+    display: inline-flex;
+    align-items: center;
     font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.logout-btn:hover {
+.header-right a:hover {
     opacity: 0.8;
 }
