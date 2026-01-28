@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<title>商品一覧（ログイン前）</title>
+<title>商品一覧</title>
 <div class="tab-menu">
     <span class="active">おすすめ</span>
     <span>マイリスト</span>
