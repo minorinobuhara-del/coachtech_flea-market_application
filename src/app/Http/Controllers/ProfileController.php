@@ -27,7 +27,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:20',
-            'postcode' => 'required|string',
+            'postcode' => 'required|string|regex:/^\d{3}-\d{4}$/',
             'address' => 'required|string',
             'building' => 'nullable|string',
             'profile_image' => 'nullable|image',
@@ -37,17 +37,20 @@ class ProfileController extends Controller
 
         // 画像保存
         if ($request->hasFile('profile_image')) {
-            $path = $request->file('profile_image')->store('profile_images', 'public');
-            $user->update(['profile_image' => $path]);
+        $path = $request->file('profile_image')
+                        ->store('profiles', 'public');
+        $user->profile_image = $path;
         }
 
-        $user->name = $request->name;
-        $user->postcode = $request->postcode;
-        $user->address = $request->address;
-        $user->building = $request->building;
+        $user->fill($request->only([
+        'name',
+        'postcode',
+        'address',
+        'building',
+    ]));
         $user->profile_completed = true;
         $user->save();
 
-        return redirect('/?tab=mylist');
+        return redirect()->route('mypage');
     }
 }

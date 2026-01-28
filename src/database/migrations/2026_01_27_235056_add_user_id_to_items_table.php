@@ -14,12 +14,10 @@ class AddUserIdToItemsTable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
-            ->cascadeOnDelete();
+            ->onDelete('cascade');
         });
     }
 
@@ -31,7 +29,7 @@ class AddUserIdToItemsTable extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-            //
+            $table->dropForeign(['user_id']);
         });
     }
 }

@@ -34,6 +34,7 @@
     height: 100px;
     background: #ddd;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .avatar-btn {

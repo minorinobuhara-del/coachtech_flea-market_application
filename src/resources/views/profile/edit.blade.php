@@ -11,11 +11,14 @@
         @csrf
 
         <div class="avatar">
-            <div class="avatar-circle"></div>
-            <label class="avatar-btn">
-                画像を選択する
-                <input type="file" name="profile_image" id="profileImage" class="file-input" hidden>
-            </label>
+        {{-- プレビュー表示用 --}}
+        <img id="avatarPreview" class="avatar-circle" src="{{ $user->profile_image? asset('storage/' . $user->profile_image): asset('images/default-user.png') }}" alt="プロフィール画像">
+
+        {{-- ファイル選択 --}}
+        <label class="avatar-btn">
+        画像を選択する
+        <input type="file" name="profile_image" id="profileImage" accept=".jpg,.jpeg,.png" hidden>
+        </label>
         </div>
 
         <div class="form-group">
@@ -47,32 +50,26 @@
             <input type="text" name="building" value="{{ old('building', $user->building) }}">
         </div>
 
-        <button class="btn-update">更新する</button>
+        <button type="submit" class="btn-update">更新する</button>
     </form>
 </div>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('profileImage');
-    const status = document.getElementById('file-status');
     const preview = document.getElementById('avatarPreview');
 
     input.addEventListener('change', () => {
-        if (input.files.length > 0) {
-            const file = input.files[0];
+        if (input.files.length === 0) return;
 
-            // ファイル名表示
-            status.textContent = file.name;
+        const file = input.files[0];
+        const reader = new FileReader();
 
-            // 画像プレビュー
-            const reader = new FileReader();
-            reader.onload = e => {
-                preview.style.backgroundImage = `url(${e.target.result})`;
-                preview.style.backgroundSize = 'cover';
-                preview.style.backgroundPosition = 'center';
-            };
-            reader.readAsDataURL(file);
-        }
+        reader.onload = e => {
+            preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
     });
 });
 </script>
