@@ -33,12 +33,17 @@ class ItemController extends Controller
             $query->where('name', 'like', '%' . $keyword . '%');
         })->latest()->get();
 
-        return view('items.index', compact('items', 'keyword'));
+        return view('items.index', [
+        'items' => $items,
+        'keyword' => $keyword,
+        'tab' => 'recommend',
+        ]);
     }
 
     // 商品詳細（ログイン前）
     public function show(Item $item)
     {
+        $item->load('likes', 'comments');
         return view('items.show', compact('item'));
     }
 

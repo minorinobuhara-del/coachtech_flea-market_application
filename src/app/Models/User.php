@@ -73,4 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'item_id'
         )->withTimestamps();
     }
+
+    //ユーザーのいいねした商品
+    public function likes()
+    {
+    return $this->hasMany(Like::class);
+    }
 }

@@ -15,15 +15,29 @@
         <p class="brand">{{ $item->brand }}</p>
         <p class="price">¥{{ number_format($item->price) }} <span>(税込)</span></p>
 
-        {{-- いいね・コメント --}}
-        <div class="icon-area">
-            <div class="icon-box">
-                <img src="{{ asset('images/icon_heart_.png') }}" alt="いいね">
-            </div>
-            <div class="icon-box">
-                <img src="{{ asset('images/fukidashi-logo.png') }}" alt="コメント">
-            </div>
+    {{-- いいね・コメント --}}
+    <div class="icon-area">
+            {{-- いいね --}}
+        <div class="icon-box">
+        <form method="POST" action="{{ route('item.like', $item) }}">
+            @csrf
+            <button type="submit" class="icon-btn">
+                <img src="{{ asset(
+                    $item->isLikedBy(auth()->user())
+                        ? 'images/icon_heart_pink.png'
+                        : 'images/icon_heart_.png'
+                ) }}" alt="いいね">
+            </button>
+        </form>
+        <span class="icon-count">{{ $item->likes->count() }}</span>
         </div>
+            {{-- コメント --}}
+        <div class="icon-box">
+        <img src="{{ asset('images/fukidashi-logo.png') }}" alt="コメント">
+        <span class="icon-count">{{ $item->comments->count() }}</span>
+        </div>
+
+    </div>
 
         <button class="purchase-btn">購入手続きへ</button>
 

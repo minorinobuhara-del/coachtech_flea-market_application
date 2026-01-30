@@ -104,7 +104,7 @@ body {
 
 .item-detail-image {
     width: 420px;
-    background: #e0e0e0;
+    background: transparent;
 }
 
 .item-detail-image img {
@@ -138,13 +138,25 @@ body {
 
 .icon-box {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .icon-box img {
     width: 24px;
     height: 24px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-count {
+    font-size: 12px;
+    color: #333;
 }
 
 /* 購入ボタン */

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Like;
+use App\Models\Comment;
+
 
 class Item extends Model
 {
@@ -40,5 +43,28 @@ class Item extends Model
             'item_id',
             'user_id'
         );
+    }
+
+    //商品のいいねユーザー
+    public function likes()
+    {
+    return $this->hasMany(Like::class);
+    }
+
+    public function isLikedBy(?User $user): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $this->likes()
+            ->where('user_id', $user->id)
+            ->exists();
+    }
+
+    //吹き出しコメント
+    public function comments()
+    {
+    return $this->hasMany(Comment::class);
     }
 }

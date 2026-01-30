@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,15 +33,13 @@ Route::get('/search', [ItemController::class, 'search'])->name('items.search');
 //商品詳細ページ
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
+//いいね機能
+Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('item.like');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // 会員画面 → プロフィール（マイページ表示）へ
-    //Route::get('/mypage', function () {
-        //return view('mypage', [
-            //'user' => auth()->user(),
-       //]);
-    //})->name('mypage');
     Route::get('/mypage', [ProfileController::class, 'mypage'])
     ->middleware(['auth', 'verified'])
     ->name('mypage');
