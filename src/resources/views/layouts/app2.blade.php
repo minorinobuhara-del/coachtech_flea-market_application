@@ -8,7 +8,8 @@
 
 <header class="header">
     <div class="header-left">
-        <img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH">
+        <a href="/">
+        <img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH"></a>
     </div>
 
     <form class="search-form" method="GET" action="{{ route('items.search') }}">
@@ -34,7 +35,7 @@
         </form>
         @endauth
         <a href="/mypage">マイページ</a>
-        <a class="sell-btn" href="#"><font color="#000000">出品</font></a>
+        <a class="sell-btn" href="/sell"><font color="#000000">出品</font></a>
     </div>
 </header>
 

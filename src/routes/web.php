@@ -36,16 +36,24 @@ Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // 会員画面 → プロフィール（マイページ表示）へ
-    Route::get('/mypage', function () {
-        return view('mypage', [
-            'user' => auth()->user(),
-        ]);
-    })->name('mypage');
+    //Route::get('/mypage', function () {
+        //return view('mypage', [
+            //'user' => auth()->user(),
+       //]);
+    //})->name('mypage');
+    Route::get('/mypage', [ProfileController::class, 'mypage'])
+    ->middleware(['auth', 'verified'])
+    ->name('mypage');
+
 
     //プロフィール編集
-    Route::get('/profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
 
-    Route::post('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+//商品出品ページ
+Route::middleware('auth')->group(function () {
+    Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
 });

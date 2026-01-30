@@ -1,0 +1,127 @@
+.sell-container {
+    width: 680px;
+    margin: 40px auto;
+}
+
+.sell-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* 共通 */
+.form-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.section-label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+
+/* 画像アップロード */
+.image-upload {
+    border: 1px dashed #ccc;
+    padding: 30px;
+    text-align: center;
+}
+
+.image-upload-box {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #ff5a5a;
+    color: #ff5a5a;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.image-preview {
+    width: 300px;
+    height: 200px;
+    border: 1px dashed #ccc;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* カテゴリー */
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-item input {
+    display: none;
+}
+
+.category-item span {
+    padding: 6px 14px;
+    border: 1px solid #ff5a5a;
+    border-radius: 20px;
+    color: #ff5a5a;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.category-item input:checked+span {
+    background: #ff5a5a;
+    color: #fff;
+}
+
+/* 入力系 */
+.input-box,
+.select-box,
+.textarea-box {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.textarea-box {
+    height: 120px;
+}
+
+.price-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.price-box input {
+    flex: 1;
+    padding: 8px;
+}
+
+/* 出品ボタン */
+.submit-btn {
+    width: 100%;
+    background: #ff5a5a;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* エラーメッセージ*/
+.error-box {
+    background: #ffecec;
+    color: #d60000;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.error-text {
+    color: #e60023;
+    font-size: 12px;
+    margin-top: 4px;
+}
