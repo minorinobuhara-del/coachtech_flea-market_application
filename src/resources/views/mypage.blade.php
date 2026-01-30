@@ -22,18 +22,18 @@
 
     {{-- タブ --}}
     <div class="mypage-tabs">
-        <a href="?tab=selling" class="{{ request('tab', 'selling') === 'selling' ? 'active' : '' }}">
+        <a href="?tab=sell" class="{{ request('tab', 'sell') === 'sell' ? 'active' : '' }}">
             出品した商品
         </a>
-        <a href="?tab=purchased" class="{{ request('tab') === 'purchased' ? 'active' : '' }}">
+        <a href="?tab=buy" class="{{ request('tab') === 'buy' ? 'active' : '' }}">
             購入した商品
         </a>
     </div>
 
     {{-- 商品一覧 --}}
     <div class="item-grid">
-        @if (request('tab', 'selling') === 'selling')
-            @forelse ($user->sellingItems as $item)
+        @if (request('tab', 'sell') === 'sell')
+            @forelse ($items as $item)
                 <div class="item-card">
                     <img src="{{ asset('storage/' . $item->image_path) }}">
                     <p>{{ $item->name }}</p>

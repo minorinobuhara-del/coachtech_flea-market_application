@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     //マイページ（プロフィール画面）
-    public function mypage()
+    public function mypage(Request $request)
     {
-        $user = auth()->user()->load('sellingItems');
+        $user = auth()->user();
+    $page = $request->query('page', 'sell');
 
-        return view('mypage', compact('user'));
+    if ($page === 'buy') {
+        // 購入した商品
+        $items = $user->purchasedItems()->latest()->get();
+    } else {
+        // 出品した商品
+        $items = $user->sellingItems()->latest()->get();
+    }
+
+        return view('mypage', compact('user', 'items', 'page'));
     }
 
     // プロフィール編集画面
