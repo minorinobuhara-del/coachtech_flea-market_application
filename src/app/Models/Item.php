@@ -20,6 +20,7 @@ class Item extends Model
         'description',
         'image_path',
         'condition',
+        'category_id',
     ];
 
     //商品のカテゴリー
@@ -62,7 +63,7 @@ class Item extends Model
             ->exists();
     }
 
-    //吹き出しコメント
+    //コメント
     public function comments()
     {
     return $this->hasMany(Comment::class);

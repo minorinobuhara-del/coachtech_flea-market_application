@@ -40,10 +40,10 @@
             {{-- カテゴリー --}}
             <label class="section-label">カテゴリー</label>
             <div class="category-list">
-                @foreach (['ファッション','家電','インテリア','レディース','メンズ','コスメ','本','ゲーム','スポーツ','キッチン','ハンドメイド','アクセサリー','おもちゃ','ベビー・キッズ'] as $category)
+                @foreach ($categories as $category)
                     <label class="category-item">
-                        <input type="radio" name="category" value="{{ $category }}">
-                        <span>{{ $category }}</span>
+                        <input type="radio" name="category_id" value="{{ $category->id }}">
+                        <span>{{ $category->name }}</span>
                     </label>
                 @endforeach
             </div>

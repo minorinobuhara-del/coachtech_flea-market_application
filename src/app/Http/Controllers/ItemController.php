@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
 use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
@@ -47,10 +48,12 @@ class ItemController extends Controller
         return view('items.show', compact('item'));
     }
 
+
     // 商品出品画面表示
     public function create()
     {
-        return view('sell');
+        $categories = Category::all();
+        return view('sell', compact('categories'));
     }
 
     //商品出品処理ページ表示
@@ -64,7 +67,7 @@ class ItemController extends Controller
         'name' => $request->name,
         'description' => $request->description,
         'image_path' => $path,
-        'category' => $request->category,
+        'category_id' => $request->category_id,
         'condition' => $request->condition,
         'price' => $request->price,
     ]);

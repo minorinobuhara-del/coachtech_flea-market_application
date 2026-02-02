@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::get('/item/{item}', [ItemController::class, 'show'])->name('items.show');
 
 //いいね機能
 Route::post('/item/{item}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('item.like');
+
+//コメント機能
+Route::post('/item/{item}/comment', [CommentController::class, 'store'])
+    ->name('item.comment')->middleware('auth');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<title>商品詳細（ログイン前）</title>
+<title>商品詳細</title>
 
 <div class="item-detail">
     {{-- 左：商品画像 --}}
@@ -45,29 +45,59 @@
         <p>{{ $item->description }}</p>
 
         <h3>商品の情報</h3>
-        <p>カテゴリー：{{ $item->category->name ?? '未設定' }}</p>
-        <p>商品の状態：{{ $item->condition }}</p>
+        <div class="item-info">
+        <div class="info-row">
+        <span class="info-label">カテゴリー</span>
+
+        <span class="category-tag">
+            @if ($item->category)
+            {{ $item->category->name }}
+        @else
+            未設定
+        @endif
+        </span>
+        </div>
+
+        <div class="info-row">
+        <span class="info-label">商品の状態</span>
+        <span class="info-value">{{ $item->condition }}</span>
+        </div>
+    </div>
         {{-- コメント欄 --}}
         <div class="comment-section">
         <h3 class="comment-title">コメント</h3>
 
     {{-- 既存コメント --}}
+        @foreach ($item->comments as $comment)
         <div class="comment-item">
         <div class="comment-user">
-            <div class="user-icon"></div>
-            <span class="user-name">admin</span>
+        <span class="user-name">{{ $comment->user->name }}</span>
         </div>
-        <p class="comment-body">こちらにコメントが入ります。</p>
+        <p class="comment-body">{{ $comment->content }}</p>
         </div>
+        @endforeach
 
-    {{-- コメント入力 --}}
+        {{-- コメント入力 --}}
         <div class="comment-form">
-        <label>商品へのコメント</label>
-        <textarea rows="4"></textarea>
-        <button class="comment-btn">コメントを送信する</button>
-        </div>
-</div>
+        @if(auth()->check())
+        <form method="POST" action="{{ route('item.comment', $item) }}">
+        @csrf
 
-    </div>
+            <label>商品へのコメント</label>
+            <textarea name="content" rows="4">{{ old('content') }}</textarea>
+
+            @error('content')
+                <p class="error">{{ $message }}</p>
+            @enderror
+
+            <button class="comment-btn">コメントを送信する</button>
+        </form>
+        @else
+        <p>
+            コメントを投稿するには
+            <a href="{{ route('login') }}">ログイン</a>
+            してください
+        </p>
+        @endif
 </div>
 @endsection

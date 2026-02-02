@@ -171,6 +171,31 @@ body {
     cursor: pointer;
 }
 
+/* 商品情報 */
+.item-info {
+    margin-top: 20px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+/*カテゴリータグ*/
+.category-tag{
+    background: #e5e5e5;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
 /* ===== コメント ===== */
 .comment-section {
     margin-top: 50px;
