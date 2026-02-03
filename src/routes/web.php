@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
     Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
+});
+
+//購入ページ
+Route::middleware('auth')->group(function () {
+    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
+        ->name('purchase.show');
+
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])
+        ->name('purchase.store');
 });

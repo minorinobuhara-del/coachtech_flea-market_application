@@ -39,7 +39,7 @@
 
     </div>
 
-        <button class="purchase-btn">購入手続きへ</button>
+        <button class="purchase-btn" onclick="location.href='{{ route('purchase.show', $item) }}'">購入手続きへ</button>
 
         <h3>商品説明</h3>
         <p>{{ $item->description }}</p>
