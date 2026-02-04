@@ -32,18 +32,18 @@
 
     {{-- 商品一覧 --}}
     <div class="item-grid">
-        @if (request('tab', 'sell') === 'sell')
             @forelse ($items as $item)
                 <div class="item-card">
                     <img src="{{ asset('storage/' . $item->image_path) }}">
                     <p>{{ $item->name }}</p>
                 </div>
             @empty
+            @if (request('tab', 'sell') === 'sell')
                 <p>出品した商品はありません</p>
-            @endforelse
         @else
             <p>購入した商品はありません</p>
         @endif
+        @endforelse
     </div>
 
 </div>

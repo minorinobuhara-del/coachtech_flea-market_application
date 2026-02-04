@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use App\Http\Requests\PurchaseRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 
@@ -16,18 +17,8 @@ class PurchaseController extends Controller
         return view('purchase.show', compact('item', 'user'));
     }
 
-    public function store(Request $request, Item $item)
+    public function store(PurchaseRequest $request, Item $item)
     {
-        // ログイン必須
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
-
-        // 支払い方法のバリデーション
-        $request->validate([
-            'payment_method' => 'required',
-        ]);
-
         // 商品を「購入済み」にする
         $item->update([
             'is_sold' => true,
@@ -35,7 +26,8 @@ class PurchaseController extends Controller
         ]);
 
         // 商品一覧へリダイレクト
-        return redirect()->route('items.index');
+        return redirect('/')
+            ->with('success', '購入が完了しました');
     }
 
 }

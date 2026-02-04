@@ -52,15 +52,13 @@ class User extends Authenticatable implements MustVerifyEmail
     // ユーザーが出品した商品
     public function sellingItems()
     {
-        return $this->hasMany(Item::class);//seller_id
+        return $this->hasMany(Item::class,'user_id');
     }
 
     //ユーザーが購入した商品
-    //※ 購入履歴テーブルができてから実装
     public function purchasedItems()
     {
-        //return $this->hasMany(Item::class, 'user_id');//buyer_id
-        return collect();
+        return $this->hasMany(Item::class, 'buyer_id');
     }
 
     //ユーザーのお気に入り商品

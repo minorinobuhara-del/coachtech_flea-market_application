@@ -10,9 +10,9 @@ class ProfileController extends Controller
     public function mypage(Request $request)
     {
         $user = auth()->user();
-    $page = $request->query('page', 'sell');
+        $tab = $request->query('tab', 'sell');
 
-    if ($page === 'buy') {
+    if ($tab === 'buy') {
         // 購入した商品
         $items = $user->purchasedItems()->latest()->get();
     } else {
@@ -20,7 +20,7 @@ class ProfileController extends Controller
         $items = $user->sellingItems()->latest()->get();
     }
 
-        return view('mypage', compact('user', 'items', 'page'));
+        return view('mypage', compact('user', 'items', 'tab'));
     }
 
     // プロフィール編集画面

@@ -19,6 +19,9 @@
 
         <hr>
 
+    <form id="purchase-form" method="POST" action="{{ route('purchase.store', $item) }}">
+    @csrf
+        <!--<input type="hidden" name="address_id" value="{{ $user->id }}">-->
         <div class="purchase-section">
             <h3>支払い方法</h3>
             <select name="payment_method" form="purchase-form">
@@ -26,9 +29,13 @@
                 <option value="convenience">コンビニ支払い</option>
                 <option value="card">カード支払い</option>
             </select>
+            @error('payment_method')
+            <p class="error">{{ $message }}</p>
+            @enderror
         </div>
 
         <hr>
+
 
         <div class="purchase-section">
             <h3>配送先 <a href="/mypage/profile" class="change-link">変更する</a></h3>
@@ -50,10 +57,8 @@
             </div>
         </div>
 
-        <form id="purchase-form" method="POST" action="{{ route('purchase.store', $item) }}">
-            @csrf
-            <button class="purchase-btn">購入する</button>
-        </form>
+            <button type="submit" class="purchase-btn">購入する</button>
+    </form>
     </div>
 
 </div>
@@ -61,9 +66,14 @@
 
 @push('scripts')
 <script>
-document.querySelector('select[name="payment_method"]').addEventListener('change', function () {
-    document.getElementById('payment-text').textContent =
-        this.options[this.selectedIndex].text;
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.querySelector('select[name="payment_method"]');
+    if (!select) return;
+
+    select.addEventListener('change', function () {
+        document.getElementById('payment-text').textContent =
+            this.options[this.selectedIndex].text;
+    });
 });
 </script>
 @endpush
