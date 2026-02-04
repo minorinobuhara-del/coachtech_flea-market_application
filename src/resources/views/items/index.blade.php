@@ -19,7 +19,6 @@
         <a href="{{ route('items.show', $item) }}" class="item-card">
             <div class="item-image">
                 <img src="{{ asset('storage/' . $item->image_path) }}" alt="">
-
                 {{-- SOLD表示 --}}
                 @if ($item->is_sold)
                     <span class="sold-label">SOLD</span>
