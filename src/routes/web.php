@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseAddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,4 +71,17 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])
         ->name('purchase.store');
+});
+
+//購入先住所入力・編集ページ
+Route::middleware('auth')->group(function () {
+
+    Route::get('/purchase/address/{item}',
+        [PurchaseAddressController::class, 'edit']
+    )->name('purchase.address.edit');
+
+    Route::post('/purchase/address/{item}',
+        [PurchaseAddressController::class, 'update']
+    )->name('purchase.address.update');
+
 });

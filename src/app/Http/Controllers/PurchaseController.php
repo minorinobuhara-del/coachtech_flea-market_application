@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PurchaseRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\PurchaseAddress;
 
 
 class PurchaseController extends Controller
@@ -14,7 +15,11 @@ class PurchaseController extends Controller
     {
         $user = Auth::user();
 
-        return view('purchase.show', compact('item', 'user'));
+        $address = PurchaseAddress::where('user_id', $user->id)
+        ->where('item_id', $item->id)
+        ->first();
+
+        return view('purchase.show', compact('item', 'user', 'address'));
     }
 
     public function store(PurchaseRequest $request, Item $item)
@@ -28,6 +33,17 @@ class PurchaseController extends Controller
         // 商品一覧へリダイレクト
         return redirect('/')
             ->with('success', '購入が完了しました');
+    }
+
+    public function address(Item $item)
+    {
+    $user = auth()->user();
+
+    $address = PurchaseAddress::where('user_id', $user->id)
+        ->where('item_id', $item->id)
+        ->first();
+
+    return view('purchase.address', compact('item', 'address'));
     }
 
 }

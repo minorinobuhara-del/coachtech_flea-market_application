@@ -38,9 +38,11 @@
 
 
         <div class="purchase-section">
-            <h3>配送先 <a href="/mypage/profile" class="change-link">変更する</a></h3>
-            <p>〒{{ $user->postcode }}</p>
-            <p>{{ $user->address }}</p>
+            <h3>配送先 <a href="{{ route('purchase.address.edit', $item) }}" class="change-link">変更する</a></h3>
+            <p>〒{{ $address->postcode ?? $user->postcode }}</p>
+            <p>{{ $address->address ?? $user->address }}</p>
+            <p>{{ $address->building ?? $user->building }}</p>
+
         </div>
     </div>
 
