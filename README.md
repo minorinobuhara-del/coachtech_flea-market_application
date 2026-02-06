@@ -22,11 +22,31 @@ Laravel 開発環境構築
 
 ・php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
 
-・php artisan make:request RegisterRequest
+・php artisan make:request
+
+・php artisan make:model
+
+・php artisan make:controller
+
+・php artisan make:migration
+
+・php artisan migrate
 
 ・php artisan db:seed
 
 ・php artisan migrate:fresh --seed
+
+・php artisan tinker
+
+・php artisan config:clear
+
+・php artisan route:clear
+
+・php artisan cache:clear
+
+・php artisan view:clear
+
+・php artisan serve
 
 ## 開発環境
 
@@ -41,7 +61,7 @@ Laravel 開発環境構築
 
 ローカル開発環境では MailHog を使用しています。
 
-- 172.27.0.4  mailhog
+- 172.27.0.4 mailhog
 
 - メール確認URL（実行中）：http://localhost:8025
 
