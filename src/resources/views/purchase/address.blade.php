@@ -27,9 +27,6 @@
         <div class="form-group">
             <label>建物名</label>
             <input type="text" name="building" value="{{ old('building', $address->building ?? '') }}">
-            @error('building')
-            <p class="address-error">{{ $message }}</p>
-            @enderror
         </div>
 
         <button class="update-btn">更新する</button>

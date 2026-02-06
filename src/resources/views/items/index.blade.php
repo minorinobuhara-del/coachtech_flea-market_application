@@ -3,10 +3,15 @@
 @section('content')
 <title>商品一覧</title>
 <div class="tab-menu">
-    <span class="tab {{ $tab ?? '' === 'recommend' ? 'active' : '' }}" onclick="location.href='/?tab=recommend'">
-    おすすめ</span>
+    <span class="tab {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}"
+    onclick="location.href='/?tab=recommend'">
+    おすすめ
+    </span>
 
-    <span class="tab {{ $tab ?? '' === 'favorite' ? 'active' : '' }}" onclick="location.href='/?tab=favorite'">マイリスト</span>
+    <span class="tab {{ request('tab') === 'favorite' ? 'active' : '' }}"
+    onclick="location.href='/?tab=favorite'">
+    マイリスト
+    </span>
 </div>
 @if(request('keyword'))
     <p class="search-result">
@@ -28,7 +33,9 @@
             <p class="item-name">{{ $item->name }}</p>
         </a>
     @empty
-        <p class="no-result">該当する商品が見つかりませんでした</p>
-    @endforelse
+    @if ($tab === 'favorite')
+        <p>マイリストに商品がありません</p>
+    @endif
+@endforelse
 </div>
 @endsection

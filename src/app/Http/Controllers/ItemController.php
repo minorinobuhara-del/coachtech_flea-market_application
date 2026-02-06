@@ -9,14 +9,22 @@ use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
 {
-    // 商品一覧
+    // 商品一覧（マイリスト表示）
     public function index(Request $request)
     {
         $tab = $request->input('tab', 'recommend');
 
-    if ($tab === 'favorite' && auth()->check()) {
-        // マイリスト（お気に入り商品）
-        $items = auth()->user()->favoriteItems()->latest()->get();
+        if ($tab === 'favorite') {
+        // 未ログインなら空
+        if (!auth()->check()) {
+            $items = collect();
+        } else {
+            // いいねした商品だけ
+            $items = auth()->user()
+                ->favoriteItems()
+                ->latest()
+                ->get();
+        }
     } else {
         // おすすめ（全商品）
         $items = Item::latest()->get();

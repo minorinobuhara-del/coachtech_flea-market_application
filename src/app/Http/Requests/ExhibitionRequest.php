@@ -42,11 +42,18 @@ class ExhibitionRequest extends FormRequest
             'image.required' => '商品画像は必須です',
             'image.image' => '画像ファイルをアップロードしてください',
             'image.mimes' => '画像はjpegまたはpng形式のみです',
-            'category.required' => 'カテゴリーを選択してください',
+            'category_id.required' => 'カテゴリーを選択してください',
             'condition.required' => '商品の状態を選択してください',
             'price.required' => '商品価格は必須です',
             'price.integer' => '商品価格は数値で入力してください',
             'price.min' => '商品価格は0円以上で入力してください',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'category_id' => 'カテゴリー',
         ];
     }
 }

@@ -63,10 +63,12 @@ body {
 .tab-menu span {
     margin-right: 20px;
     cursor: pointer;
+    color: #999;/* ← 非アクティブを明示 */
+    font-weight: normal;
 }
 
 .tab-menu .active {
-    color: red;
+    color: #ef6c63;
     font-weight: bold;
 }
 
