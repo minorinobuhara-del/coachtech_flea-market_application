@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -15,12 +13,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
-            User::create([
-                'name' => "テストユーザー{$i}",
-                'email' => "test{$i}@example.com",
+        User::firstOrCreate(
+            ['email' => 'dummy@example.com'],
+            [
+                'name' => 'ダミーユーザー',
                 'password' => Hash::make('password'),
-            ]);
-            }
+            ]
+        );
     }
 }

@@ -25,6 +25,18 @@ class LoginController extends Controller
 
         // 成功時
         $request->session()->regenerate();
+        $user = Auth::user();
+
+        // メール未認証を最優先
+        if (!$user->hasVerifiedEmail()) {
+        return redirect()->route('verification.notice');
+        }
+
+        // 👇 初回ログイン判定
+        if (is_null($user->name)) {
+        return redirect('/mypage/profile');
+        }
+
         return redirect('/mypage');
     }
 }

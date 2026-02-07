@@ -21,7 +21,7 @@ class ItemController extends Controller
         } else {
             // いいねした商品だけ
             $items = auth()->user()
-                ->favoriteItems()
+                ->likedItems()
                 ->latest()
                 ->get();
         }
