@@ -7,6 +7,8 @@ use App\Http\Requests\PurchaseRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\PurchaseAddress;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
 
 
 class PurchaseController extends Controller
@@ -19,7 +21,21 @@ class PurchaseController extends Controller
         ->where('item_id', $item->id)
         ->first();
 
-        return view('purchase.show', compact('item', 'user', 'address'));
+        // Stripe APIキー設定
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        // PaymentIntent 作成
+        $intent = PaymentIntent::create([
+        'amount' => $item->price, // 購入金額
+        'currency' => 'jpy',
+    ]);
+
+        return view('purchase.show', [
+        'item' => $item,
+        'user' => $user,
+        'address' => $address,
+        'clientSecret' => $intent->client_secret,
+    ]);
     }
 
     public function store(PurchaseRequest $request, Item $item)

@@ -73,6 +73,12 @@ Route::middleware('auth')->group(function () {
         ->name('purchase.store');
 });
 
+//カード決済処理
+Route::get('/payment/{item}', [PaymentController::class, 'create'])
+    ->middleware('auth')
+    ->name('payment.create');
+
+
 //購入先住所入力・編集ページ
 Route::middleware('auth')->group(function () {
 

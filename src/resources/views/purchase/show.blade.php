@@ -21,7 +21,6 @@
 
     <form id="purchase-form" method="POST" action="{{ route('purchase.store', $item) }}">
     @csrf
-        <!--<input type="hidden" name="address_id" value="{{ $user->id }}">-->
         <div class="purchase-section">
             <h3>支払い方法</h3>
             <select name="payment_method" form="purchase-form">
@@ -32,6 +31,13 @@
             @error('payment_method')
             <p class="error">{{ $message }}</p>
             @enderror
+
+            {{-- カード支払い時のみ表示 --}}
+        <div id="card-payment-area" style="display:none; margin-top:16px;">
+        <label>カード情報</label>
+        <div id="card-element"></div>
+        <p id="card-error" class="error"></p>
+        </div>
         </div>
 
         <hr>
@@ -67,14 +73,47 @@
 @endsection
 
 @push('scripts')
+<script src="https://js.stripe.com/v3/"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const select = document.querySelector('select[name="payment_method"]');
-    if (!select) return;
 
+    const select = document.querySelector('select[name="payment_method"]');
+    const paymentText = document.getElementById('payment-text');
+    const cardArea = document.getElementById('card-payment-area');
+    const form = document.getElementById('purchase-form');
+
+    // Stripe 初期化
+    const stripe = Stripe('{{ config('services.stripe.key') }}');
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element');
+
+    // 支払い方法変更時
     select.addEventListener('change', function () {
-        document.getElementById('payment-text').textContent =
-            this.options[this.selectedIndex].text;
+        paymentText.textContent = this.options[this.selectedIndex].text;
+        cardArea.style.display = this.value === 'card' ? 'block' : 'none';
+    });
+
+    // 送信時（カード支払いのみ Stripe 実行）
+    form.addEventListener('submit', async function (e) {
+        if (select.value !== 'card') return;
+
+        e.preventDefault();
+
+        const { paymentIntent, error } = await stripe.confirmCardPayment(
+            "{{ $clientSecret ?? '' }}",
+            {
+                payment_method: {
+                    card: card,
+                }
+            }
+        );
+
+        if (error) {
+            document.getElementById('card-error').textContent = error.message;
+        } else {
+            form.submit();
+        }
     });
 });
 </script>
