@@ -52,7 +52,7 @@ class ItemController extends Controller
     // 商品詳細（ログイン前）
     public function show(Item $item)
     {
-        $item->load('likes', 'comments');
+        $item->load('likes', 'comments', 'categories');
         return view('items.show', compact('item'));
     }
 
@@ -70,15 +70,17 @@ class ItemController extends Controller
     // 画像保存
     $path = $request->file('image')->store('items', 'public');
 
-    Item::create([
-        'user_id' => auth()->id(),
-        'name' => $request->name,
-        'description' => $request->description,
-        'image_path' => $path,
-        'category_id' => $request->category_id,
-        'condition' => $request->condition,
-        'price' => $request->price,
-    ]);
+    $item = Item::create([
+    'user_id' => auth()->id(),
+    'name' => $request->name,
+    'description' => $request->description,
+    'image_path' => $path,
+    'condition' => $request->condition,
+    'price' => $request->price,
+]);
+
+    // カテゴリーを関連付ける
+    $item->categories()->attach($request->category_ids);
 
     return redirect()->route('mypage');
 }

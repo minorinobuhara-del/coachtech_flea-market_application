@@ -26,10 +26,10 @@ class Item extends Model
     ];
 
     //商品のカテゴリー
-    public function category()
-{
-    return $this->belongsTo(Category::class);
-}
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 
     //商品の出品者(ユーザー)
     public function user()

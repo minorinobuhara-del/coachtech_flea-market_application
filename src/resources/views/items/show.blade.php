@@ -49,13 +49,17 @@
         <div class="info-row">
         <span class="info-label">カテゴリー</span>
 
-        <span class="category-tag">
-            @if ($item->category)
-            {{ $item->category->name }}
+        <div class="category-tags">
+        @if ($item->categories->isNotEmpty())
+            @foreach ($item->categories as $category)
+                <span class="category-tag">
+                    {{ $category->name }}
+                </span>
+            @endforeach
         @else
-            未設定
+            <span class="category-tag">未設定</span>
         @endif
-        </span>
+    </div>
         </div>
 
         <div class="info-row">

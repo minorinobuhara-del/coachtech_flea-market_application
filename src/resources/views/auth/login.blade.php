@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="auth-header">
-        <img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH">
+        <a href="/"><img src="{{ asset('images/auth-header.png') }}" alt="COACHTECH"></a>
     </div>
 <div class="auth-container">
     <h2 class="auth-title">ログイン</h2>

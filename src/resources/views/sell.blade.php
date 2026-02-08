@@ -38,15 +38,21 @@
             <h2 class="section-title">商品の詳細</h2>
 
             {{-- カテゴリー --}}
-            <label class="section-label">カテゴリー</label>
-            <div class="category-list">
-                @foreach ($categories as $category)
-                    <label class="category-item">
-                        <input type="radio" name="category_id" value="{{ $category->id }}">
-                        <span>{{ $category->name }}</span>
-                    </label>
-                @endforeach
-            </div>
+        <label class="section-label">カテゴリー（複数選択可）</label>
+        <div class="category-list">
+        @foreach ($categories as $category)
+        <label class="category-item">
+            <input
+                type="checkbox"
+                name="category_ids[]"
+                value="{{ $category->id }}"
+                {{ in_array($category->id, old('category_ids', [])) ? 'checked' : '' }}
+            >
+            <span>{{ $category->name }}</span>
+        </label>
+        @endforeach
+        </div>
+
 
             {{-- 商品の状態 --}}
             <label class="section-label">商品の状態</label>

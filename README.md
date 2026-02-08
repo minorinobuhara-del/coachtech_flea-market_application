@@ -91,14 +91,6 @@ Laravel 開発環境構築
 - カード情報はアプリケーションサーバーに保存されません。
 - Stripe Elements を利用し、PCI DSS に準拠した方法で実装しています。
 
-- STRIPE_KEY=
-pk_test_51SyQolFfC7RGvaW53w24ZADTZcRsngU98guAdxoFHFewTmPVdqlPlClXhZkHavh2xxfoYVrn0mdC31UcNSPv0yDu00vTeXcw1x
-
-- STRIPE_SECRET=
-sk_test_51SyQolFfC7RGvaW58QB7gX6Z0qoapBv3dmLt4kEJ9iO1XFubb5n8ULycAPWUfO0dTErcBxprM2uVP52UJ3mBozi1008GsNcVV0
-
-※ Stripe はテストモードでのみ動作します
-
 ## 使用技術
 
 ・PHP 8.1.34
