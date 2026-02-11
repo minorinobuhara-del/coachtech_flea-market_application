@@ -14,7 +14,9 @@ class AddUserIdToPurchaseAddresses extends Migration
     public function up()
     {
         Schema::table('purchase_addresses', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id')->constrained()->cascadeOnDelete();
+            if (!Schema::hasColumn('purchase_addresses', 'user_id')) {
+            $table->unsignedBigInteger('user_id')->after('id');
+    }
         });
     }
 

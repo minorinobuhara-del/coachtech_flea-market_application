@@ -14,9 +14,17 @@ class AddAddressColumnsToPurchaseAddressesTable extends Migration
     public function up()
     {
         Schema::table('purchase_addresses', function (Blueprint $table) {
+            if (!Schema::hasColumn('purchase_addresses', 'postcode')) {
             $table->string('postcode', 8);
+        }
+
+        if (!Schema::hasColumn('purchase_addresses', 'address')) {
             $table->string('address');
+        }
+
+        if (!Schema::hasColumn('purchase_addresses', 'building')) {
             $table->string('building')->nullable();
+        }
         });
     }
 
@@ -28,7 +36,17 @@ class AddAddressColumnsToPurchaseAddressesTable extends Migration
     public function down()
     {
         Schema::table('purchase_addresses', function (Blueprint $table) {
-            $table->dropColumn(['postcode', 'address', 'building']);
+            if (Schema::hasColumn('purchase_addresses', 'postcode')) {
+            $table->dropColumn('postcode');
+        }
+
+        if (Schema::hasColumn('purchase_addresses', 'address')) {
+            $table->dropColumn('address');
+        }
+
+        if (Schema::hasColumn('purchase_addresses', 'building')) {
+            $table->dropColumn('building');
+        }
         });
     }
 }

@@ -14,10 +14,12 @@ class AddItemIdToPurchaseAddresses extends Migration
     public function up()
     {
         Schema::table('purchase_addresses', function (Blueprint $table) {
+            if (!Schema::hasColumn('purchase_addresses', 'item_id')) {
             $table->foreignId('item_id')
-            ->after('user_id')
-            ->constrained('items')
-            ->cascadeOnDelete();
+                ->after('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+        }
         });
     }
 
@@ -29,8 +31,10 @@ class AddItemIdToPurchaseAddresses extends Migration
     public function down()
     {
         Schema::table('purchase_addresses', function (Blueprint $table) {
+            if (Schema::hasColumn('purchase_addresses', 'item_id')) {
             $table->dropForeign(['item_id']);
             $table->dropColumn('item_id');
+        }
         });
     }
 }
