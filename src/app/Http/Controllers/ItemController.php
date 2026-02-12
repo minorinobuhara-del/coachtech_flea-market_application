@@ -22,12 +22,19 @@ class ItemController extends Controller
             // いいねした商品だけ
             $items = auth()->user()
                 ->likedItems()
-                ->latest()
+                ->where('items.user_id', '!=', auth()->id())
+                ->orderBy('items.created_at', 'desc')
                 ->get();
         }
     } else {
-        // おすすめ（全商品）
-        $items = Item::latest()->get();
+        // 🔥 自分の商品を除外
+        if (auth()->check()) {
+            $items = Item::where('user_id', '!=', auth()->id())
+                        ->latest()
+                        ->get();
+        } else {
+            $items = Item::latest()->get();
+        }
     }
 
     return view('items.index', compact('items', 'tab'));

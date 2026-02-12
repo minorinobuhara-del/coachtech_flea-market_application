@@ -24,9 +24,6 @@ use App\Http\Controllers\PurchaseAddressController;
     //return view('welcome');
 //});
 
-//ログイン処理
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
 //商品一覧ページ
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
