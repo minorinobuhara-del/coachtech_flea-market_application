@@ -3,8 +3,8 @@
 return [
 
     'required' => ':attribute は必須です。',
-    'max' => [
-        'string' => ':attribute は :max 文字以内で入力してください。',
+    'min' => [
+        'string' => ':attribute は :min 文字以上で入力してください。',
     ],
     'image' => ':attribute は画像ファイルを選択してください。',
     'mimes' => ':attribute は :values 形式のファイルのみ対応しています。',
@@ -15,7 +15,7 @@ return [
         'name' => 'ユーザー名',
         'postcode' => '郵便番号',
         'address' => '住所',
-        'email' => 'メール',
+        'email' => 'メールアドレス',
         'password' => 'パスワード',
     ],
 ];
