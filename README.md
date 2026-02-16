@@ -103,6 +103,33 @@ Laravel 開発環境構築
 - STRIPE_SECRET_KEY=your_stripe_secret_key
 - STRIPE_PUBLIC_KEY=your_stripe_public_key
 
+## 単体テスト実行方法
+
+## 1.テスト用環境ファイルを用意
+
+プロジェクト直下に`.env.testing`を作成する。
+
+## 2.テスト用データベースを作成
+
+CREATE DATABASE your_test_db;
+
+## 3.テスト用マイグレーション実行
+
+php artisan config:clear
+
+## テスト実行
+
+php artisan test
+
+## 実行結果例
+
+PASS Tests\Unit\ExampleTest
+✓ example
+
+PASS Tests\Feature\ExampleTest
+✓ example
+
+
 
 ## 使用技術
 
