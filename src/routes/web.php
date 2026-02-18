@@ -44,7 +44,7 @@ Route::post('/item/{item}/comment', [CommentController::class, 'store'])
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // 会員画面 → プロフィール（マイページ表示）へ
-    Route::get('/mypage', [ProfileController::class, 'mypage'])
+    Route::get('/home', [ProfileController::class, 'mypage'])
     ->middleware(['auth', 'verified'])
     ->name('mypage');
 
