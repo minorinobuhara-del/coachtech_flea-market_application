@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Category;
 
 class ItemSeeder extends Seeder
 {
@@ -21,6 +22,8 @@ class ItemSeeder extends Seeder
             if ($users->count() === 0) {
         $users = User::factory()->count(3)->create();
     }
+
+    $existingCategoryIds = Category::pluck('id')->all();
 
             $items = [
         [
@@ -137,7 +140,14 @@ class ItemSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        $item->categories()->attach([$data['category']]);
+
+        // 存在しないカテゴリIDは差し替える
+            $categoryId = (int) $data['category'];
+            if (!in_array($categoryId, $existingCategoryIds, true)) {
+    $categoryId = $existingCategoryIds[array_rand($existingCategoryIds)];
+    }
+
+        $item->categories()->attach([$categoryId]);
     }
 }
 }
