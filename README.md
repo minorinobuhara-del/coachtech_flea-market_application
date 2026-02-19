@@ -123,10 +123,28 @@ php artisan test
 
 ## 実行結果例
 
-PASS Tests\Unit\ExampleTest
+PASS Tests\Feature\CommentTest.php
 ✓ example
 
-PASS Tests\Feature\ExampleTest
+PASS Tests\Feature\EmailVerificationTest.php
+✓ example
+
+PASS Tests\Feature\ItemListTest.php
+✓ example
+
+PASS Tests\Feature\LoginTest.php
+✓ example
+
+PASS Tests\Feature\ProfileAndSellTest.php
+✓ example
+
+PASS Tests\Feature\PurchaseFlowTest.php
+✓ example
+
+PASS Tests\Feature\PurchaseTest.php
+✓ example
+
+PASS Tests\Feature\RegisterTest.php
 ✓ example
 
 
