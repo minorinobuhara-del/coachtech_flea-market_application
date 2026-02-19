@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseAddressController;
 
 /*
@@ -44,7 +45,7 @@ Route::post('/item/{item}/comment', [CommentController::class, 'store'])
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // 会員画面 → プロフィール（マイページ表示）へ
-    Route::get('/home', [ProfileController::class, 'mypage'])
+    Route::get('/mypage', [ProfileController::class, 'mypage'])
     ->middleware(['auth', 'verified'])
     ->name('mypage');
 

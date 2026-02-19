@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ProfileController extends Controller
 {
@@ -14,10 +15,10 @@ class ProfileController extends Controller
 
     if ($tab === 'buy') {
         // 購入した商品
-        $items = $user->purchasedItems()->latest()->get();
+        $items = Item::where('buyer_id', $user->id)->latest()->get();
     } else {
         // 出品した商品
-        $items = $user->sellingItems()->latest()->get();
+        $items = Item::where('user_id', $user->id)->latest()->get();
     }
 
         return view('mypage', compact('user', 'items', 'tab'));

@@ -41,19 +41,21 @@ class PurchaseController extends Controller
     public function store(PurchaseRequest $request, Item $item)
     {
         // 商品を「購入済み」にする
-        $item->update([
-            'is_sold' => true,
-            'buyer_id' => auth()->id(),
-        ]);
+        if ($item->buyer_id) {
+        return back();
+        }
+        
+        $item->buyer_id = Auth::id();
+        $item->is_sold  = true;
+        $item->save();
 
         // 商品一覧へリダイレクト
-        return redirect('/')
-            ->with('success', '購入が完了しました');
+        return redirect('/mypage?tab=buy');
     }
 
     public function address(Item $item)
     {
-    $user = auth()->user();
+    $user = Auth::user();
 
     $address = PurchaseAddress::where('user_id', $user->id)
         ->where('item_id', $item->id)

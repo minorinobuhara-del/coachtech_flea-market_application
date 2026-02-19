@@ -73,3 +73,19 @@
     margin-top: 8px;
     font-size: 14px;
 }
+
+/* SOLD表示*/
+.item-image {
+    position: relative;
+}
+
+.sold-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: red;
+    color: white;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}

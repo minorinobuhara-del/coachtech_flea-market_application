@@ -29,7 +29,7 @@ class ItemController extends Controller
     } else {
         // 🔥 自分の商品を除外
         if (auth()->check()) {
-            $items = Item::where('user_id', '!=', auth()->id())
+            $items = Item::where('items.user_id', '!=', auth()->id())
                         ->latest()
                         ->get();
         } else {

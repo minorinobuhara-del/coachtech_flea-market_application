@@ -33,10 +33,18 @@
     {{-- 商品一覧 --}}
     <div class="item-grid">
             @forelse ($items as $item)
-                <div class="item-card">
-                    <img src="{{ asset('storage/' . $item->image_path) }}">
-                    <p>{{ $item->name }}</p>
-                </div>
+    <div class="item-card">
+        <div class="item-image">
+        <img src="{{ asset('storage/' . $item->image_path) }}">
+
+        {{-- SOLD表示 --}}
+        @if (!is_null($item->buyer_id))
+            <span class="sold-label">Sold</span>
+        @endif
+    </div>
+
+    <p>{{ $item->name }}</p>
+    </div>
             @empty
             @if (request('tab', 'sell') === 'sell')
                 <p>出品した商品はありません</p>

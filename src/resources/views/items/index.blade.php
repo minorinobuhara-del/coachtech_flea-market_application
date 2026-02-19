@@ -25,8 +25,8 @@
             <div class="item-image">
                 <img src="{{ asset('storage/' . $item->image_path) }}" alt="">
                 {{-- SOLD表示 --}}
-                @if ($item->is_sold)
-                    <span class="sold-label">SOLD</span>
+                @if (!is_null($item->buyer_id))
+                    <span class="sold-label">Sold</span>
                 @endif
             </div>
 

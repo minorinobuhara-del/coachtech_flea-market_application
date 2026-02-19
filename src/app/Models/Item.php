@@ -12,6 +12,8 @@ use App\Models\Comment;
 
 class Item extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'user_id',
         'buyer_id',
@@ -69,5 +71,15 @@ class Item extends Model
     public function comments()
     {
     return $this->hasMany(Comment::class);
+    }
+
+    //追加分
+    protected $casts = [
+    'is_sold' => 'boolean',
+    ];
+
+    public function getIsSoldAttribute($value)
+    {
+    return (bool) ($this->buyer_id ?? $value);
     }
 }
