@@ -52,8 +52,6 @@ class FortifyServiceProvider extends ServiceProvider
         {
             // 未認証ユーザー向けの案内画面へ
             return redirect()->route('verification.notice');
-            // ルート名が不安なら ↓ でもOK
-            // return redirect('/email/verify');
         }
     };
 });
