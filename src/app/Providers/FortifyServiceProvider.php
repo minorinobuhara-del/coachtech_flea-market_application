@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Actions\Fortify\CreateNewUser;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Illuminate\Http\Request;
@@ -43,6 +44,19 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
+
+        // 登録後の遷移（register → /email/verify）
+        $this->app->singleton(RegisterResponse::class, function () {
+        return new class implements RegisterResponse {
+        public function toResponse($request)
+        {
+            // 未認証ユーザー向けの案内画面へ
+            return redirect()->route('verification.notice');
+            // ルート名が不安なら ↓ でもOK
+            // return redirect('/email/verify');
+        }
+    };
+});
 
         // ユーザー作成処理
         Fortify::createUsersUsing(CreateNewUser::class);
